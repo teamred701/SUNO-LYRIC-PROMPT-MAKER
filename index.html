@@ -103,6 +103,360 @@ button.choice.roulette-picked::after {
 }
 </style>
 
+
+<style id="persistent-selected-glow-final">
+/* 選んだボタンを確実に光ったまま残す最終指定 */
+button.choice.selected,
+button.choice.roulette-picked {
+  position: relative !important;
+  transform: translateY(-1px) !important;
+  font-weight: 900 !important;
+}
+
+button.choice.selected {
+  border: 2px solid #e8365d !important;
+  background: linear-gradient(135deg, rgba(232,54,93,.58), rgba(232,54,93,.20)) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 0 0 2px rgba(232,54,93,.45),
+    0 0 28px rgba(232,54,93,.75),
+    inset 0 0 24px rgba(232,54,93,.28) !important;
+}
+
+button.choice.roulette-picked {
+  border: 2px solid #f5a623 !important;
+  background: linear-gradient(135deg, rgba(245,166,35,.62), rgba(245,166,35,.22)) !important;
+  color: #fff6dd !important;
+  box-shadow:
+    0 0 0 2px rgba(245,166,35,.50),
+    0 0 30px rgba(245,166,35,.78),
+    inset 0 0 24px rgba(245,166,35,.30) !important;
+}
+
+button.choice.selected::after {
+  content: "✓" !important;
+  position: absolute !important;
+  top: 6px !important;
+  right: 8px !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+}
+
+button.choice.roulette-picked::after {
+  content: "🎲" !important;
+  position: absolute !important;
+  top: 6px !important;
+  right: 8px !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+</style>
+
+
+<style id="clear-selected-visibility">
+button.choice.selected,
+button.choice.roulette-picked {
+  border-width: 3px !important;
+  transform: translateY(-2px) !important;
+  padding-top: 22px !important;
+}
+
+button.choice.selected {
+  background: linear-gradient(135deg, rgba(232,54,93,.72), rgba(232,54,93,.25)) !important;
+  border-color: #ff4f78 !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 0 0 3px rgba(232,54,93,.45),
+    0 0 32px rgba(232,54,93,.85),
+    inset 0 0 26px rgba(255,255,255,.10) !important;
+}
+
+button.choice.roulette-picked {
+  background: linear-gradient(135deg, rgba(245,166,35,.78), rgba(245,166,35,.28)) !important;
+  border-color: #ffd06a !important;
+  color: #1b1202 !important;
+  box-shadow:
+    0 0 0 3px rgba(245,166,35,.52),
+    0 0 34px rgba(245,166,35,.90),
+    inset 0 0 26px rgba(255,255,255,.16) !important;
+}
+
+button.choice.selected::before,
+button.choice.roulette-picked::before {
+  position: absolute !important;
+  left: 8px !important;
+  top: 5px !important;
+  z-index: 2 !important;
+  border-radius: 999px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  letter-spacing: .05em !important;
+  pointer-events: none !important;
+}
+
+button.choice.selected::before {
+  content: "選択中" !important;
+  background: #ffffff !important;
+  color: #e8365d !important;
+}
+
+button.choice.roulette-picked::before {
+  content: "ROULETTE" !important;
+  background: #0d0d18 !important;
+  color: #f5a623 !important;
+}
+
+button.choice.selected::after {
+  content: "✓" !important;
+  top: 6px !important;
+  right: 9px !important;
+  font-size: 18px !important;
+  color: #ffffff !important;
+}
+
+button.choice.roulette-picked::after {
+  content: "🎲" !important;
+  top: 5px !important;
+  right: 9px !important;
+  font-size: 17px !important;
+}
+
+.picked-label {
+  border: 2px solid rgba(0,212,255,.45) !important;
+  background: rgba(0,212,255,.13) !important;
+  color: #dff8ff !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}
+
+.picked-label b {
+  color: #f5a623 !important;
+  font-size: 14px !important;
+}
+
+.picked-label.is-picked {
+  border-color: rgba(245,166,35,.65) !important;
+  background: rgba(245,166,35,.16) !important;
+  box-shadow: 0 0 18px rgba(245,166,35,.18) !important;
+}
+
+.picked-label.is-picked::before {
+  content: "✓ ";
+  color: #f5a623;
+  font-weight: 900;
+}
+</style>
+
+
+<style id="button-itself-stays-glowing">
+button.choice.selected,
+button.choice.roulette-picked,
+button.choice[data-picked="true"] {
+  position: relative !important;
+  isolation: isolate !important;
+  border-width: 3px !important;
+  transform: translateY(-2px) !important;
+  font-weight: 900 !important;
+  overflow: hidden !important;
+  padding-top: 24px !important;
+}
+
+button.choice.selected,
+button.choice[data-picked="true"]:not(.roulette-picked) {
+  border-color: #ff4f78 !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.22), transparent 42%),
+    linear-gradient(135deg, rgba(232,54,93,.78), rgba(232,54,93,.28)) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 0 0 3px rgba(232,54,93,.55),
+    0 0 18px rgba(232,54,93,.95),
+    0 0 36px rgba(232,54,93,.70),
+    inset 0 0 24px rgba(255,255,255,.16) !important;
+}
+
+button.choice.roulette-picked {
+  border-color: #ffd06a !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.25), transparent 42%),
+    linear-gradient(135deg, rgba(245,166,35,.88), rgba(245,166,35,.34)) !important;
+  color: #1b1202 !important;
+  box-shadow:
+    0 0 0 3px rgba(245,166,35,.60),
+    0 0 18px rgba(245,166,35,1),
+    0 0 38px rgba(245,166,35,.82),
+    inset 0 0 24px rgba(255,255,255,.20) !important;
+}
+
+button.choice.selected::before,
+button.choice.roulette-picked::before,
+button.choice[data-picked="true"]::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  border-radius: inherit !important;
+  background: rgba(255,255,255,.08) !important;
+}
+
+button.choice.selected::after,
+button.choice[data-picked="true"]:not(.roulette-picked)::after {
+  content: "✓ 選択中" !important;
+  position: absolute !important;
+  top: 5px !important;
+  right: 7px !important;
+  left: auto !important;
+  z-index: 2 !important;
+  background: rgba(255,255,255,.95) !important;
+  color: #e8365d !important;
+  border-radius: 999px !important;
+  padding: 2px 7px !important;
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+}
+
+button.choice.roulette-picked::after {
+  content: "🎲 ROULETTE" !important;
+  position: absolute !important;
+  top: 5px !important;
+  right: 7px !important;
+  left: auto !important;
+  z-index: 2 !important;
+  background: rgba(13,13,24,.92) !important;
+  color: #f5a623 !important;
+  border-radius: 999px !important;
+  padding: 2px 7px !important;
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+}
+</style>
+
+
+<style id="selected-button-super-visible">
+/* 選択したボタンを、他のボタンと明確に区別する最終デザイン */
+button.choice.selected,
+button.choice.roulette-picked,
+button.choice[data-picked="true"] {
+  position: relative !important;
+  border-width: 4px !important;
+  transform: translateY(-3px) scale(1.015) !important;
+  font-weight: 900 !important;
+  padding-top: 30px !important;
+  overflow: hidden !important;
+}
+
+/* 通常選択：ピンクで強調 */
+button.choice.selected,
+button.choice[data-picked="true"]:not(.roulette-picked) {
+  border-color: #ff4778 !important;
+  background:
+    linear-gradient(135deg, rgba(255,71,120,.92), rgba(232,54,93,.45)) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 0 0 4px rgba(255,71,120,.38),
+    0 0 18px rgba(255,71,120,.95),
+    0 0 42px rgba(255,71,120,.72),
+    inset 0 0 18px rgba(255,255,255,.18) !important;
+}
+
+/* ルーレット選択：ゴールドで強調 */
+button.choice.roulette-picked {
+  border-color: #ffd45c !important;
+  background:
+    linear-gradient(135deg, rgba(255,210,80,.98), rgba(245,166,35,.55)) !important;
+  color: #1b1202 !important;
+  box-shadow:
+    0 0 0 4px rgba(245,166,35,.45),
+    0 0 20px rgba(245,166,35,1),
+    0 0 46px rgba(245,166,35,.82),
+    inset 0 0 18px rgba(255,255,255,.22) !important;
+}
+
+/* 選択ラベルをボタン内に大きく表示 */
+button.choice.selected::before,
+button.choice[data-picked="true"]:not(.roulette-picked)::before {
+  content: "✓ 選択中" !important;
+  position: absolute !important;
+  top: 5px !important;
+  left: 8px !important;
+  right: auto !important;
+  z-index: 3 !important;
+  background: #ffffff !important;
+  color: #e8365d !important;
+  border-radius: 999px !important;
+  padding: 3px 9px !important;
+  font-size: 11px !important;
+  line-height: 1.1 !important;
+  font-weight: 900 !important;
+  letter-spacing: .03em !important;
+  pointer-events: none !important;
+}
+
+button.choice.roulette-picked::before {
+  content: "🎲 ROULETTE" !important;
+  position: absolute !important;
+  top: 5px !important;
+  left: 8px !important;
+  right: auto !important;
+  z-index: 3 !important;
+  background: #0d0d18 !important;
+  color: #f5a623 !important;
+  border-radius: 999px !important;
+  padding: 3px 9px !important;
+  font-size: 11px !important;
+  line-height: 1.1 !important;
+  font-weight: 900 !important;
+  letter-spacing: .03em !important;
+  pointer-events: none !important;
+}
+
+/* 右上のチェックも残す */
+button.choice.selected::after,
+button.choice[data-picked="true"]:not(.roulette-picked)::after {
+  content: "●" !important;
+  position: absolute !important;
+  top: 7px !important;
+  right: 9px !important;
+  color: #ffffff !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  text-shadow: 0 0 10px rgba(255,255,255,.9) !important;
+}
+
+button.choice.roulette-picked::after {
+  content: "●" !important;
+  position: absolute !important;
+  top: 7px !important;
+  right: 9px !important;
+  color: #1b1202 !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  text-shadow: 0 0 10px rgba(255,255,255,.9) !important;
+}
+
+/* NEXT横の表示も選択済みなら強く光らせる */
+.picked-label.is-picked {
+  border: 3px solid rgba(245,166,35,.85) !important;
+  background: rgba(245,166,35,.22) !important;
+  color: #fff6dd !important;
+  box-shadow:
+    0 0 0 2px rgba(245,166,35,.22),
+    0 0 20px rgba(245,166,35,.32) !important;
+}
+
+.picked-label.is-picked b {
+  color: #ffd45c !important;
+  font-size: 15px !important;
+}
+</style>
+
 </head>
 <body>
 <div id="wheelOverlay" class="wheel-overlay" data-action="close-wheel">
@@ -118,11 +472,12 @@ button.choice.roulette-picked::after {
 <div class="app">
 <header>
   <div class="logo">SUNO LYRIC PROMPT MAKER</div>
+  <p class="desc">全8ステップ：WHO / WHAT / WHEN / WHERE / WHY / HOW / STRUCTURE / PHRASE</p>
   
   
 </header>
 
-<div id="progress" class="progress"><div class="dots" id="dots"></div><div class="count" id="count">1 / 7</div></div>
+<div id="progress" class="progress"><div class="dots" id="dots"></div><div class="count" id="count">1 / 8</div></div>
 
 <main id="form">
   <section class="step" data-step="1">
@@ -216,14 +571,14 @@ button.choice.roulette-picked::after {
       <div><div class="eyebrow">STEP 3 / WHEN</div><h2>いつ</h2></div>
       <button type="button" class="roulette" data-action="roulette" data-key="when">🎲 ROULETTE</button>
     </div>
-    <div class="grid"><button type="button" class="choice" data-action="choice" data-key="when" data-value="真夜中">真夜中</button>
-<button type="button" class="choice" data-action="choice" data-key="when" data-value="夜明け前">夜明け前</button>
-<button type="button" class="choice" data-action="choice" data-key="when" data-value="夕暮れ時">夕暮れ時</button>
-<button type="button" class="choice" data-action="choice" data-key="when" data-value="雨の日">雨の日</button>
+    <div class="grid"><button type="button" class="choice" data-action="choice" data-key="when" data-value="希望の朝">希望の朝</button>
+<button type="button" class="choice" data-action="choice" data-key="when" data-value="新しい朝">新しい朝</button>
+<button type="button" class="choice" data-action="choice" data-key="when" data-value="光が差す夕暮れ">光が差す夕暮れ</button>
+<button type="button" class="choice" data-action="choice" data-key="when" data-value="雨上がり">雨上がり</button>
 <button type="button" class="choice" data-action="choice" data-key="when" data-value="夏の夜">夏の夜</button>
-<button type="button" class="choice" data-action="choice" data-key="when" data-value="冬の朝">冬の朝</button>
+<button type="button" class="choice" data-action="choice" data-key="when" data-value="澄んだ冬の朝">澄んだ冬の朝</button>
 <button type="button" class="choice" data-action="choice" data-key="when" data-value="春の夕方">春の夕方</button>
-<button type="button" class="choice" data-action="choice" data-key="when" data-value="終電後">終電後</button>
+<button type="button" class="choice" data-action="choice" data-key="when" data-value="明日へ向かう夜">明日へ向かう夜</button>
 <button type="button" class="choice" data-action="choice" data-key="when" data-value="満月の夜">満月の夜</button>
 <button type="button" class="choice" data-action="choice" data-key="when" data-value="台風の夜">台風の夜</button>
 <button type="button" class="choice" data-action="choice" data-key="when" data-value="雪の日">雪の日</button>
@@ -235,7 +590,7 @@ button.choice.roulette-picked::after {
 <button type="button" class="choice" data-action="choice" data-key="when" data-value="新年の朝">新年の朝</button>
 <button type="button" class="choice" data-action="choice" data-key="when" data-value="文化祭の後">文化祭の後</button>
 <button type="button" class="choice" data-action="choice" data-key="when" data-value="季節の変わり目">季節の変わり目</button>
-<button type="button" class="choice" data-action="choice" data-key="when" data-value="眠れない夜">眠れない夜</button></div>
+<button type="button" class="choice" data-action="choice" data-key="when" data-value="夢が始まる夜">夢が始まる夜</button></div>
     <div class="nav">
       <button type="button" class="back" data-action="back">← BACK</button>
       <span class="picked-label" data-summary-for="when">選択：<b>未選択</b></span>
@@ -250,19 +605,19 @@ button.choice.roulette-picked::after {
       <div><div class="eyebrow">STEP 4 / WHERE</div><h2>どこで</h2></div>
       <button type="button" class="roulette" data-action="roulette" data-key="where">🎲 ROULETTE</button>
     </div>
-    <div class="grid"><button type="button" class="choice" data-action="choice" data-key="where" data-value="都会の路地裏">都会の路地裏</button>
+    <div class="grid"><button type="button" class="choice" data-action="choice" data-key="where" data-value="光の差す街角">光の差す街角</button>
 <button type="button" class="choice" data-action="choice" data-key="where" data-value="海沿いの街">海沿いの街</button>
 <button type="button" class="choice" data-action="choice" data-key="where" data-value="古い駅のホーム">古い駅のホーム</button>
-<button type="button" class="choice" data-action="choice" data-key="where" data-value="誰もいない部屋">誰もいない部屋</button>
-<button type="button" class="choice" data-action="choice" data-key="where" data-value="夜のコンビニ">夜のコンビニ</button>
+<button type="button" class="choice" data-action="choice" data-key="where" data-value="朝日の入る部屋">朝日の入る部屋</button>
+<button type="button" class="choice" data-action="choice" data-key="where" data-value="帰り道のコンビニ">帰り道のコンビニ</button>
 <button type="button" class="choice" data-action="choice" data-key="where" data-value="学校の屋上">学校の屋上</button>
 <button type="button" class="choice" data-action="choice" data-key="where" data-value="ライブハウス">ライブハウス</button>
-<button type="button" class="choice" data-action="choice" data-key="where" data-value="雨の交差点">雨の交差点</button>
-<button type="button" class="choice" data-action="choice" data-key="where" data-value="ネオン街">ネオン街</button>
-<button type="button" class="choice" data-action="choice" data-key="where" data-value="深夜の公園">深夜の公園</button>
+<button type="button" class="choice" data-action="choice" data-key="where" data-value="虹の見える交差点">虹の見える交差点</button>
+<button type="button" class="choice" data-action="choice" data-key="where" data-value="きらめく街並み">きらめく街並み</button>
+<button type="button" class="choice" data-action="choice" data-key="where" data-value="緑の公園">緑の公園</button>
 <button type="button" class="choice" data-action="choice" data-key="where" data-value="地下鉄の車内">地下鉄の車内</button>
 <button type="button" class="choice" data-action="choice" data-key="where" data-value="古びた喫茶店">古びた喫茶店</button>
-<button type="button" class="choice" data-action="choice" data-key="where" data-value="高速道路">高速道路</button>
+<button type="button" class="choice" data-action="choice" data-key="where" data-value="未来へ続く道">未来へ続く道</button>
 <button type="button" class="choice" data-action="choice" data-key="where" data-value="港">港</button>
 <button type="button" class="choice" data-action="choice" data-key="where" data-value="異国の街">異国の街</button>
 <button type="button" class="choice" data-action="choice" data-key="where" data-value="狭いアパート">狭いアパート</button>
@@ -284,25 +639,25 @@ button.choice.roulette-picked::after {
       <div><div class="eyebrow">STEP 5 / WHY</div><h2>なぜ</h2></div>
       <button type="button" class="roulette" data-action="roulette" data-key="why">🎲 ROULETTE</button>
     </div>
-    <div class="grid"><button type="button" class="choice" data-action="choice" data-key="why" data-value="忘れられない記憶">忘れられない記憶</button>
-<button type="button" class="choice" data-action="choice" data-key="why" data-value="伝えられなかった言葉">伝えられなかった言葉</button>
+    <div class="grid"><button type="button" class="choice" data-action="choice" data-key="why" data-value="未来を変えたい">未来を変えたい</button>
+<button type="button" class="choice" data-action="choice" data-key="why" data-value="本当の気持ちを届けたい">本当の気持ちを届けたい</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="変わりたい衝動">変わりたい衝動</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="誰かを守りたい">誰かを守りたい</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="自分を解放したい">自分を解放したい</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="終わりを受け入れる">終わりを受け入れる</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="ただ、生きている">ただ、生きている</button>
-<button type="button" class="choice" data-action="choice" data-key="why" data-value="過去への後悔">過去への後悔</button>
-<button type="button" class="choice" data-action="choice" data-key="why" data-value="愛されたかった">愛されたかった</button>
+<button type="button" class="choice" data-action="choice" data-key="why" data-value="後悔を力に変えたい">後悔を力に変えたい</button>
+<button type="button" class="choice" data-action="choice" data-key="why" data-value="誰かを笑顔にしたい">誰かを笑顔にしたい</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="夢を叶えたい">夢を叶えたい</button>
-<button type="button" class="choice" data-action="choice" data-key="why" data-value="孤独を埋めたい">孤独を埋めたい</button>
-<button type="button" class="choice" data-action="choice" data-key="why" data-value="許されたい">許されたい</button>
+<button type="button" class="choice" data-action="choice" data-key="why" data-value="仲間と前に進みたい">仲間と前に進みたい</button>
+<button type="button" class="choice" data-action="choice" data-key="why" data-value="新しい自分に出会いたい">新しい自分に出会いたい</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="希望を失いたくない">希望を失いたくない</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="自由になりたい">自由になりたい</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="大切な人を忘れたくない">大切な人を忘れたくない</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="居場所を探している">居場所を探している</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="本当の気持ちを伝えたい">本当の気持ちを伝えたい</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="未来を信じたい">未来を信じたい</button>
-<button type="button" class="choice" data-action="choice" data-key="why" data-value="やり直したい">やり直したい</button>
+<button type="button" class="choice" data-action="choice" data-key="why" data-value="もう一度立ち上がりたい">もう一度立ち上がりたい</button>
 <button type="button" class="choice" data-action="choice" data-key="why" data-value="前に進みたい">前に進みたい</button></div>
     <div class="nav">
       <button type="button" class="back" data-action="back">← BACK</button>
@@ -419,7 +774,7 @@ button.choice.roulette-picked::after {
 <script>
 (function() {
 "use strict";
-var DATA = {"adj": ["恋する", "傷ついた", "孤独な", "夢を追う", "失恋した", "強がる", "泣けない", "優しい", "不器用な", "迷える", "壊れかけた", "自由を求める", "希望を抱く", "笑えない", "臆病な", "まっすぐな", "疲れ果てた", "情熱的な", "静かな", "忘れられない"], "noun": ["青年", "少女", "少年", "旅人", "アーティスト", "表現者", "恋人", "学生", "大人", "反逆者", "夢追い人", "放浪者", "誰か", "自分", "ミュージシャン", "ヒーロー", "アウトサイダー", "生存者", "友達", "天使"], "what": ["恋愛・切なさ", "別れ・喪失", "再会・希望", "自由への渇望", "怒り・反抗", "孤独・静寂", "友情・絆", "成長・変化", "叶わない恋", "青春の痛み", "後悔", "未来への不安", "夢への挑戦", "現実逃避", "依存と執着", "家族愛", "希望の再生", "忘れられない思い出", "すれ違い", "新しい始まり"], "when": ["真夜中", "夜明け前", "夕暮れ時", "雨の日", "夏の夜", "冬の朝", "春の夕方", "終電後", "満月の夜", "台風の夜", "雪の日", "卒業式の日", "夏祭りの帰り道", "朝焼けの駅", "静かな休日", "クリスマスイブ", "新年の朝", "文化祭の後", "季節の変わり目", "眠れない夜"], "where": ["都会の路地裏", "海沿いの街", "古い駅のホーム", "誰もいない部屋", "夜のコンビニ", "学校の屋上", "ライブハウス", "雨の交差点", "ネオン街", "深夜の公園", "地下鉄の車内", "古びた喫茶店", "高速道路", "港", "異国の街", "狭いアパート", "山の中", "廃墟", "秘密基地", "帰り道"], "why": ["忘れられない記憶", "伝えられなかった言葉", "変わりたい衝動", "誰かを守りたい", "自分を解放したい", "終わりを受け入れる", "ただ、生きている", "過去への後悔", "愛されたかった", "夢を叶えたい", "孤独を埋めたい", "許されたい", "希望を失いたくない", "自由になりたい", "大切な人を忘れたくない", "居場所を探している", "本当の気持ちを伝えたい", "未来を信じたい", "やり直したい", "前に進みたい"], "how": ["ダークで重い", "明るく疾走感", "静かで繊細", "エモくドラマチック", "サイバーパンク", "フォーク・アコースティック", "J-POP風", "ロック・バンドサウンド", "Lo-fiチル", "アニメ主題歌風", "ピアノバラード", "EDM・フェス系", "シティポップ", "ジャズ風", "ポストロック", "オルタナティブ", "ヒップホップ調", "和風・幻想的", "映画音楽風", "爽やかな青春ロック"], "phrase": ["もう戻れない夜に", "君の笑顔だけが", "終わらない夢の中で", "声にならない想い", "まだ君を探してる", "消えない傷跡", "あの日の約束", "僕らはきっと大丈夫", "涙が星になる", "さよならの向こうへ", "この街で生きていく", "忘れないでいて", "光を探して", "名前を呼んで", "夢の続きを見よう", "壊れそうな心で", "明日へ走り出す", "君がいた季節", "何度でも立ち上がる", "夜が明けるまで"], "structure": ["王道ポップ構成", "サビ始まり構成", "Aメロ重視構成", "短いイントロ構成", "静かな始まりから大サビ", "2番で展開する構成", "ブリッジで転換する構成", "ラスサビで盛り上げる構成", "繰り返しが耳に残る構成", "ストーリー重視構成", "バラード定番構成", "ロック向け疾走構成", "ダンス曲向け構成", "アニメ主題歌風構成", "シンプルで短めの構成", "サビを多めに入れる構成", "間奏を活かす構成", "語りから始まる構成", "アウトロ余韻重視構成", "予想外の転調構成"]};
+var DATA = {"adj": ["恋する", "傷ついた", "孤独な", "夢を追う", "失恋した", "強がる", "泣けない", "優しい", "不器用な", "迷える", "壊れかけた", "自由を求める", "希望を抱く", "笑えない", "臆病な", "まっすぐな", "疲れ果てた", "情熱的な", "静かな", "忘れられない"], "noun": ["青年", "少女", "少年", "旅人", "アーティスト", "表現者", "恋人", "学生", "大人", "反逆者", "夢追い人", "放浪者", "誰か", "自分", "ミュージシャン", "ヒーロー", "アウトサイダー", "生存者", "友達", "天使"], "what": ["恋愛・切なさ", "別れ・喪失", "再会・希望", "自由への渇望", "怒り・反抗", "孤独・静寂", "友情・絆", "成長・変化", "叶わない恋", "青春の痛み", "後悔", "未来への不安", "夢への挑戦", "現実逃避", "依存と執着", "家族愛", "希望の再生", "忘れられない思い出", "すれ違い", "新しい始まり"], "when": ["希望の朝", "新しい朝", "光が差す夕暮れ", "雨上がり", "夏の夜", "澄んだ冬の朝", "春の夕方", "明日へ向かう夜", "満月の夜", "台風の夜", "雪の日", "卒業式の日", "夏祭りの帰り道", "朝焼けの駅", "静かな休日", "クリスマスイブ", "新年の朝", "文化祭の後", "季節の変わり目", "夢が始まる夜"], "where": ["光の差す街角", "海沿いの街", "古い駅のホーム", "朝日の入る部屋", "帰り道のコンビニ", "学校の屋上", "ライブハウス", "虹の見える交差点", "きらめく街並み", "緑の公園", "地下鉄の車内", "古びた喫茶店", "未来へ続く道", "港", "異国の街", "狭いアパート", "山の中", "廃墟", "秘密基地", "帰り道"], "why": ["未来を変えたい", "本当の気持ちを届けたい", "変わりたい衝動", "誰かを守りたい", "自分を解放したい", "終わりを受け入れる", "ただ、生きている", "後悔を力に変えたい", "誰かを笑顔にしたい", "夢を叶えたい", "仲間と前に進みたい", "新しい自分に出会いたい", "希望を失いたくない", "自由になりたい", "大切な人を忘れたくない", "居場所を探している", "本当の気持ちを伝えたい", "未来を信じたい", "もう一度立ち上がりたい", "前に進みたい"], "how": ["ダークで重い", "明るく疾走感", "静かで繊細", "エモくドラマチック", "サイバーパンク", "フォーク・アコースティック", "J-POP風", "ロック・バンドサウンド", "Lo-fiチル", "アニメ主題歌風", "ピアノバラード", "EDM・フェス系", "シティポップ", "ジャズ風", "ポストロック", "オルタナティブ", "ヒップホップ調", "和風・幻想的", "映画音楽風", "爽やかな青春ロック"], "phrase": ["もう戻れない夜に", "君の笑顔だけが", "終わらない夢の中で", "声にならない想い", "まだ君を探してる", "消えない傷跡", "あの日の約束", "僕らはきっと大丈夫", "涙が星になる", "さよならの向こうへ", "この街で生きていく", "忘れないでいて", "光を探して", "名前を呼んで", "夢の続きを見よう", "壊れそうな心で", "明日へ走り出す", "君がいた季節", "何度でも立ち上がる", "夜が明けるまで"], "structure": ["王道ポップ構成", "サビ始まり構成", "Aメロ重視構成", "短いイントロ構成", "静かな始まりから大サビ", "2番で展開する構成", "ブリッジで転換する構成", "ラスサビで盛り上げる構成", "繰り返しが耳に残る構成", "ストーリー重視構成", "バラード定番構成", "ロック向け疾走構成", "ダンス曲向け構成", "アニメ主題歌風構成", "シンプルで短めの構成", "サビを多めに入れる構成", "間奏を活かす構成", "語りから始まる構成", "アウトロ余韻重視構成", "予想外の転調構成"]};
 var STRUCTURE_MAP = {"王道ポップ構成": "[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Pre-Chorus] → [Chorus] → [Bridge] → [Final Chorus] → [Outro]", "サビ始まり構成": "[Chorus] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Bridge] → [Final Chorus] → [Outro]", "Aメロ重視構成": "[Intro] → [Verse 1] → [Verse 2] → [Pre-Chorus] → [Chorus] → [Verse 3] → [Chorus] → [Outro]", "短いイントロ構成": "[Short Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Chorus] → [Bridge] → [Final Chorus]", "静かな始まりから大サビ": "[Quiet Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Bridge] → [Big Final Chorus] → [Outro]", "2番で展開する構成": "[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2: new perspective] → [Pre-Chorus] → [Chorus] → [Bridge] → [Final Chorus]", "ブリッジで転換する構成": "[Intro] → [Verse 1] → [Chorus] → [Verse 2] → [Chorus] → [Bridge: emotional shift] → [Final Chorus] → [Outro]", "ラスサビで盛り上げる構成": "[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Pre-Chorus] → [Chorus] → [Bridge] → [Final Chorus: biggest climax] → [Outro]", "繰り返しが耳に残る構成": "[Hook] → [Verse 1] → [Chorus] → [Verse 2] → [Chorus] → [Hook Repeat] → [Final Chorus] → [Outro]", "ストーリー重視構成": "[Intro] → [Verse 1: setup] → [Verse 2: development] → [Chorus] → [Verse 3: turning point] → [Bridge] → [Final Chorus] → [Outro]", "バラード定番構成": "[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Pre-Chorus] → [Chorus] → [Bridge] → [Final Chorus] → [Outro]", "ロック向け疾走構成": "[Guitar Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Chorus] → [Guitar Solo] → [Bridge] → [Final Chorus]", "ダンス曲向け構成": "[Intro] → [Verse 1] → [Build Up] → [Drop/Chorus] → [Verse 2] → [Build Up] → [Drop/Chorus] → [Breakdown] → [Final Drop]", "アニメ主題歌風構成": "[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Pre-Chorus] → [Chorus] → [Bridge] → [Final Chorus] → [Outro]", "シンプルで短めの構成": "[Verse 1] → [Chorus] → [Verse 2] → [Chorus] → [Bridge] → [Final Chorus]", "サビを多めに入れる構成": "[Chorus] → [Verse 1] → [Chorus] → [Verse 2] → [Chorus] → [Bridge] → [Final Chorus] → [Outro]", "間奏を活かす構成": "[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Instrumental Break] → [Verse 2] → [Chorus] → [Bridge] → [Final Chorus]", "語りから始まる構成": "[Spoken Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Bridge] → [Final Chorus] → [Outro]", "アウトロ余韻重視構成": "[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Chorus] → [Bridge] → [Final Chorus] → [Long Outro]", "予想外の転調構成": "[Intro] → [Verse 1] → [Pre-Chorus] → [Chorus] → [Verse 2] → [Bridge] → [Key Change] → [Final Chorus] → [Outro]"};
 var STYLE = {"ダークで重い": "dark rock, heavy, minor key, atmospheric", "明るく疾走感": "upbeat pop-rock, driving, bright synths", "静かで繊細": "acoustic ballad, delicate piano, intimate", "エモくドラマチック": "emo ballad, orchestral swells, cinematic", "サイバーパンク": "synthwave, dark electronic, cyberpunk", "フォーク・アコースティック": "folk, acoustic guitar, warm, natural", "J-POP風": "J-pop, catchy hooks, emotional chorus", "ロック・バンドサウンド": "rock band, electric guitar, energetic", "Lo-fiチル": "lo-fi pop, mellow beat, warm texture", "アニメ主題歌風": "anime opening, emotional, powerful chorus", "ピアノバラード": "piano ballad, emotional vocal, soft strings", "EDM・フェス系": "EDM, festival drop, energetic synths", "シティポップ": "city pop, groovy bass, nostalgic synths", "ジャズ風": "jazz pop, smooth piano, warm brass", "ポストロック": "post-rock, ambient guitars, huge climax", "オルタナティブ": "alternative rock, raw, emotional", "ヒップホップ調": "hip hop, laid-back beat, melodic rap", "和風・幻想的": "Japanese traditional fusion, ethereal, cinematic", "映画音楽風": "cinematic pop, orchestral, dramatic build", "爽やかな青春ロック": "youthful pop-rock, bright guitars, uplifting"};
 var currentStep = 1;
@@ -454,16 +809,24 @@ function showStep(n) {
   var step = document.querySelector('.step[data-step="'+currentStep+'"]');
   if (step) step.classList.add("active");
   renderProgress();
+  applySelectionStyles();
   updateSummaries();
   window.scrollTo(0,0);
 }
 
 function selectChoice(key, value, isRoulette) {
   selected[key] = value;
-  all('[data-choice="'+key+'"]').forEach(function(btn){
-    btn.classList.remove("selected","roulette-picked","is-pressing");
-    if (btn.getAttribute("data-value") === value) btn.classList.add(isRoulette ? "roulette-picked" : "selected");
+
+  all('[data-choice="' + key + '"]').forEach(function(btn) {
+    btn.classList.remove("selected", "roulette-picked", "is-pressing");
+    btn.removeAttribute("data-picked");
+
+    if (btn.getAttribute("data-value") === value) {
+      btn.setAttribute("data-picked", "true");
+      btn.classList.add(isRoulette ? "roulette-picked" : "selected");
+    }
   });
+
   if (key === "adj" || key === "noun") {
     skipped.who = !!isRoulette;
     updateWho();
@@ -473,6 +836,8 @@ function selectChoice(key, value, isRoulette) {
   } else {
     skipped[key] = !!isRoulette;
   }
+
+  applySelectionStyles();
   flash(isRoulette ? "ROULETTE" : "SELECT");
   updateSummaries();
 }
@@ -481,8 +846,35 @@ function updateWho() {
   byId("who-preview").textContent = ((selected.adj||"") + (selected.noun||"")) || "まだ選択されていません";
 }
 
+
+function applySelectionStyles() {
+  Object.keys(selected).forEach(function(key) {
+    var value = selected[key];
+    if (!value) return;
+
+    all('[data-choice="' + key + '"]').forEach(function(btn) {
+      var isTarget = btn.getAttribute("data-value") === value;
+
+      btn.removeAttribute("data-picked");
+
+      if (isTarget) {
+        btn.setAttribute("data-picked", "true");
+        btn.classList.remove("selected", "roulette-picked");
+
+        var isRouletteKey = (key === "adj" || key === "noun") ? skipped.who : skipped[key];
+        btn.classList.add(isRouletteKey ? "roulette-picked" : "selected");
+      } else {
+        btn.classList.remove("selected");
+        btn.classList.remove("roulette-picked");
+      }
+    });
+  });
+}
+
 function updateSummaries() {
   var whoText = ((selected.adj || "") + (selected.noun || "")) || "未選択";
+  var phraseText = (byId("phrase-input") && byId("phrase-input").value.replace(/^\s+|\s+$/g,"")) || selected.phrase || "未選択";
+
   var map = {
     who: whoText,
     what: selected.what || "未選択",
@@ -491,13 +883,19 @@ function updateSummaries() {
     why: selected.why || "未選択",
     how: selected.how || "未選択",
     structure: selected.structure || "未選択",
-    phrase: (byId("phrase-input") && byId("phrase-input").value.replace(/^\s+|\s+$/g,"")) || selected.phrase || "未選択"
+    phrase: phraseText
   };
 
   Object.keys(map).forEach(function(key) {
     all('[data-summary-for="' + key + '"]').forEach(function(el) {
       var label = key === "phrase" ? "フレーズ" : "選択";
-      el.innerHTML = label + '：<b>' + safeHTML(map[key]) + '</b>';
+      var value = map[key];
+      el.innerHTML = label + '：<b>' + safeHTML(value) + '</b>';
+      if (value && value !== "未選択") {
+        el.classList.add("is-picked");
+      } else {
+        el.classList.remove("is-picked");
+      }
     });
   });
 }
@@ -656,7 +1054,7 @@ function copyPrompt() {
 function resetApp() {
   selected={};
   skipped={who:false,what:false,when:false,where:false,why:false,how:false,structure:false};
-  all(".choice").forEach(function(btn){btn.classList.remove("selected","roulette-picked","is-pressing");});
+  all(".choice").forEach(function(btn){btn.classList.remove("selected","roulette-picked","is-pressing"); btn.removeAttribute("data-picked");});
   byId("phrase-input").value="";
   byId("who-preview").textContent="まだ選択されていません";
   byId("result").innerHTML="";
@@ -692,9 +1090,15 @@ document.addEventListener("click", function(e){ handleAction(e.target, e); }, tr
 document.addEventListener("touchend", function(e){ handleAction(e.target, e); }, true);
 
 byId("phrase-input").addEventListener("input", function(){
-  selected.phrase=this.value;
+  selected.phrase = this.value;
+  all('[data-choice="phrase"]').forEach(function(btn){
+    btn.classList.remove("selected", "roulette-picked"); btn.removeAttribute("data-picked");
+    if (btn.getAttribute("data-value") === selected.phrase) {
+      btn.classList.add("selected");
+    }
+  });
+  applySelectionStyles();
   updateSummaries();
-  all('[data-choice="phrase"]').forEach(function(btn){btn.classList.remove("selected","roulette-picked");});
 });
 
 updateSummaries();
